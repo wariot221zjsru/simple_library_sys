@@ -949,12 +949,18 @@ class LibraryMainWindow(QMainWindow):
 #  主入口
 # ================================================================
 
+from time_wrapper_again import timer_with_final_popup
+@timer_with_final_popup
 def main():
     app = QApplication(sys.argv)
     app.setFont(QFont("Microsoft YaHei", 10))
     window = LibraryMainWindow()
     window.show()
-    sys.exit(app.exec_())
+    #sys.exit(app.exec_())
+    # ⚠️ 注意：这里不要写 sys.exit(...)，而是直接返回退出码 #dpsk#2026.07.28#
+    # ⚠️ 必须返回 app 以保持 QApplication 引用存活，否则之后 wrapper 中 QMessageBox 会报错
+    exit_code = app.exec_()
+    return app, exit_code
 
 
 if __name__ == "__main__":
