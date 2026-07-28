@@ -109,7 +109,10 @@ while True:
         
         add_time=str(datetime.datetime.now())
 
-        book.update({"书名":bookname,"作者":writor,"ISBN":isbn,"分类":category,"库存数量":amount,"增加时间":add_time})
+        #book.update({"书名":bookname,"作者":writor,"ISBN":isbn,"分类":category,"库存数量":amount,"增加时间":add_time})
+        #book.update() 不是创建新字典，而是修改全局那个唯一的 book 对象。books.append(book) 追加的也不是副本，而是指向同一对象的引用。
+        # 应该这样（每次新建独立字典）
+        book = {"书名":bookname,"作者":writor,"ISBN":isbn,"分类":category,"库存数量":amount,"增加时间":add_time}
         books.append(book)
 
         print("添加一批图书成功！")
