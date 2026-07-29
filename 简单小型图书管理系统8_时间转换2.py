@@ -5,6 +5,8 @@ from file_handler import load_data, save_data#
 from config import * #引入所有配置的变量
 from utils import *
 
+from check import *
+
 import re
 #2. 限定搜索特定键（推荐）#dpsk#
 def find_indices_by_keys(data, pattern, keys=None, flags=0):#dpsk#
@@ -104,6 +106,12 @@ while True:
         bookname=str(input("书名："))
         writor=str(input("作者："))
         isbn=str(input("ISBN："))
+        if isbn=="":
+            print("isbn不能为空！")
+            continue
+        if ifvaluerepeat_dictlist(books,"ISBN",isbn):#2026.07.29#判定isbn不重复才能继续添加#
+            print("isbn重复！请重新添加。")
+            continue
         category=str(input("图书分类："))
         amount=int(input("库存数量："))
         
