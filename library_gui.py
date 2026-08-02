@@ -239,7 +239,7 @@ class ReturnDialog(QDialog):
     def __init__(self, borrows, parent=None):
         super().__init__(parent)
         self.setWindowTitle("归还图书")
-        self.setMinimumSize(620, 420)
+        self.setMinimumSize(620, 420) #2026.08.02 #没改成
         self.selected_borrow = None
 
         layout = QVBoxLayout(self)
@@ -322,7 +322,7 @@ class LibraryMainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("图书管理系统 v2.0 (PyQt版)")
-        self.setMinimumSize(920, 660)
+        self.setMinimumSize(1050, 660)# 920 #改变窗口大小，写在这才有效
 
         # ---------- 加载数据（与 CLI 一致） ----------
         self.books, self.borrows = load_data()
